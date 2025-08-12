@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8000;
 await connectToDB();
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://mern-food-delivery-app-frontend-cuqj.onrender.com",
     credentials: true
 }));
 app.use(cookieParser());

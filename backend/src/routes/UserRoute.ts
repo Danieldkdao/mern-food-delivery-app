@@ -54,7 +54,7 @@ userRoute.post('/register', async (req: Request<{}, {}, UserInfo>, res: Response
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: "strict",
+            sameSite: 'none',
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
         res.json(logged);
@@ -81,7 +81,7 @@ userRoute.post('/login', async (req: Request<{}, {}, Login>, res: Response) => {
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: "strict",
+            sameSite: 'none',
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
         res.json(logged);
@@ -109,7 +109,7 @@ userRoute.get('/refresh', async (req: Request, res: Response) => {
         res.cookie("refreshToken", newRefreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: 'strict',
+            sameSite: 'none',
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
         res.json({success: true, message: "Refresh successful!", newAccessToken});
@@ -127,7 +127,7 @@ userRoute.delete('/logout', async (req: Request, res: Response) => {
     res.clearCookie("refreshToken", {
         httpOnly: true,
         secure: true,
-        sameSite: 'strict'
+        sameSite: 'none'
     });
     res.json({success: true, message: "User logged out successfully!"});
 });
