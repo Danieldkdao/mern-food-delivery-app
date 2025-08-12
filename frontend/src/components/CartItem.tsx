@@ -35,7 +35,7 @@ function CartItem(props: CartItemProp) {
                         if(typeof item.id !== "string"){
                             console.log(item.id._id !== props.info._id);
                         }
-                        typeof item.id !== "string" ? item.id._id !== props.info._id : true
+                        return typeof item.id !== "string" ? item.id._id !== props.info._id : true
                     });
                     console.log(filtered);
                     return filtered;
