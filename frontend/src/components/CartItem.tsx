@@ -29,15 +29,9 @@ function CartItem(props: CartItemProp) {
         if(!isDelete) return;
         try {
             setCart(prev => {
-                    console.log(prev);
-                    console.log(props.info._id);
-                    const filtered = prev.filter(item => {
-                        if(typeof item.id !== "string"){
-                            console.log(item.id._id !== props.info._id);
-                        }
-                        return typeof item.id !== "string" ? item.id._id !== props.info._id : true
-                    });
-                    console.log(filtered);
+                    const filtered = prev.filter(item => (
+                        typeof item.id !== "string" ? item.id._id !== props.info._id : true
+                    ));
                     return filtered;
                 }
             );
