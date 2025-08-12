@@ -29,7 +29,10 @@ function CartItem(props: CartItemProp) {
         if(!isDelete) return;
         try {
             setCart(prev => {
+                    console.log(prev);
+                    console.log(props.info._id);
                     const filtered = prev.filter(item => {
+                        console.log(item.id);
                         typeof item.id !== "string" ? item.id._id !== props.info._id : true
                     });
                     console.log(filtered);
