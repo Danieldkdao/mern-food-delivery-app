@@ -31,11 +31,13 @@ function CartItem(props: CartItemProp) {
             await api.delete(`/users/removeCartItem?userId=${userInfo.id}&itemId=${props.info._id}`, {
                 withCredentials: true
             });
-            setCart(prev => prev.filter(item => {
-                if(typeof item.id !== "string"){
-                    item.id._id === props.info._id
-                }
-            }));
+            setCart(prev => {
+                const filtered = prev.filter(item => {
+                    typeof item.id !== "string" ? item.id._id !== props.info._id : true
+                });
+                return filtered;
+            }
+        );
         } catch (error) {
             console.error(error);
         }
