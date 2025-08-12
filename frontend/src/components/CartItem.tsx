@@ -33,7 +33,7 @@ function CartItem(props: CartItemProp) {
                     console.log(props.info._id);
                     const filtered = prev.filter(item => {
                         if(typeof item.id !== "string"){
-                            console.log(item.id._id === props.info._id);
+                            console.log(item.id._id !== props.info._id);
                         }
                         typeof item.id !== "string" ? item.id._id !== props.info._id : true
                     });
