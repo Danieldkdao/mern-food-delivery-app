@@ -1,5 +1,6 @@
 import { assets } from "../assets/assets"
 import { type CartItem } from "../pages/Orders"
+import { type IFood } from "../pages/Orders"
 
 type OrderProps = {
     order: CartItem[]
@@ -12,8 +13,9 @@ function Order(props: OrderProps) {
         <div className="flex flex-col md:flex-row items-center justify-between text-sm w-full gap-1 md:gap-5 border p-5 border-orange-500">
             <div className="flex flex-row items-center justify-between w-full md:gap-10 md:w-auto">
                 <img src={assets.parcel_icon} />
-                <h1>{props.order.map(item => {
-                    return `${item.id.name} x ${item.quantity}`
+                <h1>{props.order.filter(item => item.id && typeof item.id !== "string")
+                .map(item => {
+                    return `${(item.id as IFood).name} x ${item.quantity}`
                 }).join(', ')}</h1>
                 <h1>${props.total.toFixed(2)}</h1>
             </div>
