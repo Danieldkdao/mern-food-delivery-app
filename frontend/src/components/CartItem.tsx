@@ -28,16 +28,18 @@ function CartItem(props: CartItemProp) {
         const isDelete = window.confirm("Are you sure you want to remove this item from your cart?");
         if(!isDelete) return;
         try {
+            setCart(prev => {
+                    const filtered = prev.filter(item => {
+                        typeof item.id !== "string" ? item.id._id !== props.info._id : true
+                    });
+                    console.log(filtered);
+                    return filtered;
+                }
+            );
+            
             await api.delete(`/users/removeCartItem?userId=${userInfo.id}&itemId=${props.info._id}`, {
                 withCredentials: true
             });
-            setCart(prev => {
-                const filtered = prev.filter(item => {
-                    typeof item.id !== "string" ? item.id._id !== props.info._id : true
-                });
-                return filtered;
-            }
-        );
         } catch (error) {
             console.error(error);
         }
